@@ -12,11 +12,6 @@ policy "nsa_cisa_v1" {
     policy "container_disallow_host_path" {
       description = "Containers should not able to access any specific paths of the host file system. There are many ways a container with unrestricted access to the host filesystem can escalate privileges, including reading data from other containers, and abusing the credentials of system services, such as Kubelet."
 
-      query "pod_security_policy_allowed_host_path" {
-        description = "The Pod Security Policy `allowedHostPaths` specifies a list of host paths that are allowed to be used by hostPath volumes. An empty list means there is no restriction on host paths used. This is defined as a list of objects with a single pathPrefix field, which allows hostPath volumes to mount a path that begins with an allowed prefix, and a readOnly field indicating it must be mounted read-only."
-        query = file("queries/pod_security/pod_security_policy_allowed_host_path.sql")
-      }
-
       query "pod_volume_host_path" {
         description = "Containers in a Pod should not able to access any specific paths of the host file system. There are many ways a container with unrestricted access to the host filesystem can escalate privileges, including reading data from other containers, and abusing the credentials of system services, such as Kubelet."
         query = file("queries/pod_security/pod_volume_host_path.sql")
@@ -46,19 +41,9 @@ policy "nsa_cisa_v1" {
         query = file("queries/pod_security/pod_container_privilege_disabled.sql")
       }
 
-      query "pod_security_policy_container_privilege_disabled" {
-        description = "Pod Security Policy privileged controls whether the Pod containers may run with privileged access. Containers in a Pod should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
-        query = file("queries/pod_security/pod_security_policy_container_privilege_disabled.sql")
-      }
-
       query "replicaset_container_privilege_disabled" {
         description = "Containers in a ReplicaSet should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
         query = file("queries/pod_security/replicaset_container_privilege_disabled.sql")
-      }
-
-      query "replication_controller_container_privilege_disabled" {
-        description = "Containers in a ReplicationController should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
-        query = file("queries/pod_security/replication_controller_container_privilege_disabled.sql")
       }
     }
 
@@ -85,28 +70,9 @@ policy "nsa_cisa_v1" {
         query = file("queries/pod_security/pod_container_privilege_escalation_disabled.sql")
       }
 
-      query "pod_security_policy_container_privilege_escalation_disabled" {
-        description = "Pod Security Policy allowPrivilegeEscalation controls whether the Pod containers may request for privilege escalation. Containers in a Pod should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
-        query = file("queries/pod_security/pod_security_policy_container_privilege_escalation_disabled.sql")
-      }
-
       query "replicaset_container_privilege_escalation_disabled" {
         description = "Containers in a ReplicaSet should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
         query = file("queries/pod_security/replicaset_container_privilege_escalation_disabled.sql")
-      }
-
-      query "replication_controller_container_privilege_escalation_disabled" {
-        description = "Containers in a ReplicationController should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
-        query = file("queries/pod_security/replication_controller_container_privilege_escalation_disabled.sql")
-      }
-    }
-
-    policy "container_security_service_hardening" {
-      description = "Linux provides several out-of-the-box security modules. Some of the popular ones are SELinux, AppArmor and Seccomp. Containerized applications should use these security services."
-
-      query "pod_security_policy_security_services_hardening" {
-        description = "The underlying host OS needs to be secured in order to prevent container breaches from affecting the host. For this, Linux provides several out-of-the-box security modules. Some of the popular ones are SELinux, AppArmor and Seccomp."
-        query = file("queries/pod_security/pod_security_policy_security_services_hardening.sql")
       }
     }
 
@@ -133,19 +99,9 @@ policy "nsa_cisa_v1" {
         query = file("queries/pod_security/pod_host_network_access_disabled.sql")
       }
 
-      query "pod_security_policy_host_network_access_disabled" {
-        description = "Pod Security Policy host network controls whether the Pod may use the node network namespace. Doing so gives the Pod access to the loopback device, services listening on localhost, and could be used to snoop on network activity of other Pods on the same node."
-        query = file("queries/pod_security/pod_security_policy_host_network_access_disabled.sql")
-      }
-
       query "replicaset_host_network_access_disabled" {
         description = "Containers in a ReplicaSet should not run in the host network of the node where the pod is deployed. When running on the host network, the pod can use the network namespace and network resources of the node. In this case, the pod can access loopback devices, listen to addresses, and monitor the traffic of other pods on the node."
         query = file("queries/pod_security/replicaset_host_network_access_disabled.sql")
-      }
-
-      query "replication_controller_host_network_access_disabled" {
-        description = "Containers in a ReplicationController should not run in the host network of the node where the pod is deployed. When running on the host network, the pod can use the network namespace and network resources of the node. In this case, the pod can access loopback devices, listen to addresses, and monitor the traffic of other pods on the node."
-        query = file("queries/pod_security/replication_controller_host_network_access_disabled.sql")
       }
     }
 
@@ -172,19 +128,9 @@ policy "nsa_cisa_v1" {
         query = file("queries/pod_security/pod_hostpid_hostipc_sharing_disabled.sql")
       }
 
-      query "pod_security_policy_hostpid_hostipc_sharing_disabled" {
-        description = "Pod Security Policy hostPID and hostIPC controls whether the Pod may share the host process namespaces. Containers in a Pod should not share the host process PID or IPC namespace. Sharing the host’s process namespace allows the container to see all of the processes on the host system. This reduces the benefit of process level isolation between the host and the containers. Under these circumstances a malicious user who has access to a container could get access to processes on the host itself, manipulate them, and even be able to kill them."
-        query = file("queries/pod_security/pod_security_policy_hostpid_hostipc_sharing_disabled.sql")
-      }
-
       query "replicaset_hostpid_hostipc_sharing_disabled" {
         description = "Containers in a ReplicaSet should not share the host process PID or IPC namespace. Sharing the host’s process namespace allows the container to see all of the processes on the host system. This reduces the benefit of process level isolation between the host and the containers. Under these circumstances a malicious user who has access to a container could get access to processes on the host itself, manipulate them, and even be able to kill them."
         query = file("queries/pod_security/replicaset_hostpid_hostipc_sharing_disabled.sql")
-      }
-
-      query "replication_controller_hostpid_hostipc_sharing_disabled" {
-        description = "Containers in a ReplicationController should not share the host process PID or IPC namespace. Sharing the host’s process namespace allows the container to see all of the processes on the host system. This reduces the benefit of process level isolation between the host and the containers. Under these circumstances a malicious user who has access to a container could get access to processes on the host itself, manipulate them, and even be able to kill them."
-        query = file("queries/pod_security/replication_controller_hostpid_hostipc_sharing_disabled.sql")
       }
     }
 
@@ -211,19 +157,9 @@ policy "nsa_cisa_v1" {
         query = file("queries/pod_security/pod_immutable_container_filesystem.sql")
       }
 
-      query "pod_security_policy_immutable_container_filesystem" {
-        description = "Pod Security Policy readOnlyRootFilesystem controls whether the Pod containers run with read only root file system. Containers in a Pod should always run with a read only root file system. Using an immutable root filesystem and a verified boot mechanism prevents against attackers from owning the machine through permanent local changes. An immutable root filesystem can also prevent malicious binaries from writing to the host system."
-        query = file("queries/pod_security/pod_security_policy_immutable_container_filesystem.sql")
-      }
-
       query "replicaset_immutable_container_filesystem" {
         description = "Containers in a ReplicaSet should always run with a read only root file system. Using an immutable root filesystem and a verified boot mechanism prevents against attackers from owning the machine through permanent local changes. An immutable root filesystem can also prevent malicious binaries from writing to the host system."
         query = file("queries/pod_security/replicaset_immutable_container_filesystem.sql")
-      }
-
-      query "replication_controller_immutable_container_filesystem" {
-        description = "Containers in a ReplicationController should always run with a read only root file system. Using an immutable root filesystem and a verified boot mechanism prevents against attackers from owning the machine through permanent local changes. An immutable root filesystem can also prevent malicious binaries from writing to the host system."
-        query = file("queries/pod_security/replication_controller_immutable_container_filesystem.sql")
       }
     }
 
@@ -250,19 +186,9 @@ policy "nsa_cisa_v1" {
         query = file("queries/pod_security/pod_non_root_container.sql")
       }
 
-      query "pod_security_policy_non_root_container" {
-        description = "Pod Security Policy should prohibit containers from running as root. Containers in a Pod should not run with root privileges. By default, many container services run as the privileged root user, and applications execute inside the container as root despite not requiring privileged execution. Preventing root execution by using non-root containers or a rootless container engine limits the impact of a container compromise."
-        query = file("queries/pod_security/pod_security_policy_non_root_container.sql")
-      }
-
       query "replicaset_non_root_container" {
         description = "Containers in a ReplicaSet should not run with root privileges. By default, many container services run as the privileged root user, and applications execute inside the container as root despite not requiring privileged execution. Preventing root execution by using non-root containers or a rootless container engine limits the impact of a container compromise."
         query = file("queries/pod_security/replicaset_non_root_container.sql")
-      }
-
-      query "replication_controller_non_root_container" {
-        description = "Containers in a ReplicationController should not run with root privileges. By default, many container services run as the privileged root user, and applications execute inside the container as root despite not requiring privileged execution. Preventing root execution by using non-root containers or a rootless container engine limits the impact of a container compromise."
-        query = file("queries/pod_security/replication_controller_non_root_container.sql")
       }
     }
 
@@ -315,12 +241,6 @@ policy "nsa_cisa_v1" {
       query "replicaset_cpu_limit" {
         description = "Containers in a ReplicaSet should have CPU limit which restricts the container to use no more than a given amount of CPU."
         query = file("queries/network_hardening/replicaset_cpu_limit.sql")
-      }
-
-      query "replication_controller_cpu_limit" {
-        description = "Containers in a ReplicationController should have CPU limit which restricts the container to use no more than a given amount of CPU."
-        query = file("queries/network_hardening/replication_controller_cpu_limit.sql")
-      }
     }
 
     policy "cpu_request" {
@@ -354,11 +274,6 @@ policy "nsa_cisa_v1" {
       query "replicaset_cpu_request" {
         description = "Containers in a ReplicaSet should have CPU request. If required Kubernetes will make sure your containers get the CPU they requested."
         query = file("queries/network_hardening/replicaset_cpu_request.sql")
-      }
-
-      query "replication_controller_cpu_request" {
-        description = "Containers in a ReplicationController should have CPU request. If required Kubernetes will make sure your containers get the CPU they requested."
-        query = file("queries/network_hardening/replication_controller_cpu_request.sql")
       }
     }
 
@@ -403,11 +318,6 @@ policy "nsa_cisa_v1" {
         description = "Containers in a ReplicaSet should have memory limit which restricts the container to use no more than a given amount of user or system memory."
         query = file("queries/network_hardening/replicaset_memory_limit.sql")
       }
-
-      query "replication_controller_memory_limit" {
-        description = "Containers in a ReplicationController should have memory limit which restricts the container to use no more than a given amount of user or system memory."
-        query = file("queries/network_hardening/replication_controller_memory_limit.sql")
-      }
     }
 
     policy "memory_request" {
@@ -441,11 +351,6 @@ policy "nsa_cisa_v1" {
       query "replicaset_memory_request" {
         description = "Containers in a ReplicaSet should have memory request. If required Kubernetes will make sure your containers get the memory they requested."
         query = file("queries/network_hardening/replicaset_memory_request.sql")
-      }
-
-      query "replication_controller_memory_request" {
-        description = "Containers in a ReplicationController should have memory request. If required Kubernetes will make sure your containers get the memory they requested."
-        query = file("queries/network_hardening/replication_controller_memory_request.sql")
       }
     }
 
