@@ -3,16 +3,11 @@ policy "pod_security" {
   title ="Kubernetes Pod Security"
   docs = file("nsa_cisa_v1/docs/pod_security.md")
 
-
-  policy "container_disallow_host_path" {
-    title = "Disallow Container Host Path"
+  check "container_disallow_host_path" {
     docs = file("nsa_cisa_v1/docs/container_disallow_host_path.md")
-
-    check "pod_volume_host_path" {
-      title ="Containers in a Pod should not able to access any specific paths of the host file system. There are many ways a container with unrestricted access to the host filesystem can escalate privileges, including reading data from other containers, and abusing the credentials of system services, such as Kubelet."
-      query = file("queries/pod_security/pod_volume_host_path.sql")
-    }
+    query = file("queries/pod_security/pod_volume_host_path.sql")
   }
+
 
   policy "container_privilege_disabled" {
     title ="Containers should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
