@@ -4,7 +4,7 @@
 
 Containers should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment.
 
-This includes DeamonSets, Deploymnets, Jobs, Pods and Replicaset
+This includes DeamonSets, Deploymnets, Jobs, Pods and ReplicaSets
 
 # Rationale
 
