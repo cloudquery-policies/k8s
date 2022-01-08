@@ -4,7 +4,7 @@
 
 `readOnlyRootFilesystem` setting that controls whether a container is able to write into its filesystem.
 
-This includes DeamonSets, Deploymnets, Jobs, Pods and ReplicaSets
+This includes DeamonSets, Deployments, Jobs, Pods and ReplicaSets
 
 ## Rationale
 

@@ -4,7 +4,7 @@
 
 Ensure containers don't run with `hostIPC`, `hostPID` flags set to `true`.
 
-This includes DeamonSets, Deploymnets, Jobs, Pods and ReplicaSets
+This includes DeamonSets, Deployments, Jobs, Pods and ReplicaSets
 
 ## Rationle
 

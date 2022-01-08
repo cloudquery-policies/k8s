@@ -1,8 +1,9 @@
 # Kubernetes Network separation and hardening
 
 Cluster networking is a central concept of Kubernetes. Communication between
-containers, Pods, services, and external services must be taken into consideration. By
-default, there are few network policies in place to separate resources and prevent
+containers, Pods, services, and external services must be taken into consideration. 
+
+By default, there are few network policies in place to separate resources and prevent
 lateral movement or escalation if a cluster is compromised. Resource separation and
 encryption can be an effective way to limit a cyber actor’s movement and escalation
 within a cluster.

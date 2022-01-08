@@ -4,7 +4,7 @@
 
 Ensure that containers are not allowed privilege escalation, by checking `allowPrivilegeEscalation` is set to false.
 
-This includes DeamonSets, Deploymnets, Jobs, Pods and Replicaset
+This includes DeamonSets, Deployments, Jobs, Pods and Replicaset
 
 # Rationale
 

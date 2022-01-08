@@ -4,7 +4,7 @@
 
 Enforce `MustRunAsNonRoot` is set to `true` on containers
 
-This includes DeamonSets, Deploymnets, Jobs, Pods and ReplicaSets
+This includes DeamonSets, Deployments, Jobs, Pods and ReplicaSets
 
 ## Rationale
 

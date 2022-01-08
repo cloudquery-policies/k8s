@@ -4,7 +4,7 @@
 
 When a pod is configured with `hostNetwork` set `true`, the applications running in such a pod can directly see the network interfaces of the host machine where the pod was started. An application that is configured to listen on all network interfaces will in turn be accessible on all network interfaces of the host machine.
 
-This includes DeamonSets, Deploymnets, Jobs, Pods and ReplicaSets
+This includes DeamonSets, Deployments, Jobs, Pods and ReplicaSets
 
 ## Rationle
 
