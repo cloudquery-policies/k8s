@@ -1,97 +1,115 @@
 
 policy "pod_security" {
   title ="Kubernetes Pod Security"
-  docs = file("nsa_cisa_v1/docs/pod_security.md")
+  docs = file("nsa_cisa_v1/docs/pod_security/pod_security.md")
 
   check "container_disallow_host_path" {
-    docs = file("nsa_cisa_v1/docs/container_disallow_host_path.md")
+    title = "Disallow host path access"
+    docs = file("nsa_cisa_v1/docs/pod_security/container_disallow_host_path.md")
     query = file("queries/pod_security/pod_volume_host_path.sql")
   }
 
 
   policy "container_privilege_disabled" {
-    title ="Containers should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
+    title ="Verify containers have privileged access disabled"
+    docs = file("nsa_cisa_v1/docs/pod_security/privileged_access_disabled.md")
 
     check "daemonset_container_privilege_disabled" {
-      title ="Containers in a DaemonSet should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
+      title = "Deamonset privileges disabled"
+         docs = file("nsa_cisa_v1/docs/pod_security/privileged_access_disabled.md")
       query = file("queries/pod_security/daemonset_container_privilege_disabled.sql")
     }
 
     check "deployment_container_privilege_disabled" {
-      title ="Containers in a Deployment should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
+      title ="Deployment containers privileged access disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/privileged_access_disabled.md")
       query = file("queries/pod_security/deployment_container_privilege_disabled.sql")
     }
 
     check "job_container_privilege_disabled" {
-      title ="Containers in a Job should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
+      title = "Jobs container privileged access disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/privileged_access_disabled.md")
       query = file("queries/pod_security/job_container_privilege_disabledsql")
     }
 
     check "pod_container_privilege_disabled" {
-      title ="Containers in a Pod should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
+      title = "Pod container privileged access disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/privileged_access_disabled.md")
       query = file("queries/pod_security/pod_container_privilege_disabled.sql")
     }
 
     check "replicaset_container_privilege_disabled" {
-      title ="Containers in a ReplicaSet should not have privileged access. To prevent security issues, it is recommended that you do not run privileged containers in your environment. Instead, provide granular permissions and capabilities to the container environment. Giving containers full access to the host can create security flaws in your production environment."
+      title = "ReplicaSet container privileged access disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/privileged_access_disabled.md")
       query = file("queries/pod_security/replicaset_container_privilege_disabled.sql")
     }
   }
 
   policy "container_privilege_escalation_disabled" {
-    title ="Containers should not allow privilege escalation. A container running with the `allowPrivilegeEscalation` flag set to true may have processes that can gain more privileges than their parent."
+    title ="Container privileged escalation disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
 
     check "daemonset_container_privilege_escalation_disabled" {
-      title ="Containers in a DaemonSet should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
+      title ="DaemonSet container privileged escalation disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
       query = file("queries/pod_security/daemonset_container_privilege_escalation_disabled.sql")
     }
 
     check "deployment_container_privilege_escalation_disabled" {
-      title ="Containers in a Deployment should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
+      title ="Deployment container privileged escalation disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
       query = file("queries/pod_security/deployment_container_privilege_escalation_disabled.sql")
     }
 
     check "job_container_privilege_escalation_disabled" {
-      title ="Containers in a Job should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
+      title ="Job container privileged escalation disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
       query = file("queries/pod_security/job_container_privilege_escalation_disabled.sql")
     }
 
     check "pod_container_privilege_escalation_disabled" {
-      title ="Containers in a Pod should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
+      title ="Pod container privileged escalation disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
       query = file("queries/pod_security/pod_container_privilege_escalation_disabled.sql")
     }
 
     check "replicaset_container_privilege_escalation_disabled" {
-      title ="Containers in a ReplicaSet should not allow privilege escalation. A container running with the allowPrivilegeEscalation flag set to true may have processes that can gain more privileges than their parent."
+      title ="ReplicaSet container privileged escalation disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
       query = file("queries/pod_security/replicaset_container_privilege_escalation_disabled.sql")
     }
   }
 
   policy "host_network_access_disabled" {
-    title ="Pod host network controls whether the Pod may use the node network namespace. Doing so gives the Pod access to the loopback device, services listening on localhost, and could be used to snoop on network activity of other Pods on the same node."
+    title ="Host network access disabled"
 
     check "daemonset_host_network_access_disabled" {
-      title ="Containers in a DaemonSet should not run in the host network of the node where the pod is deployed. When running on the host network, the pod can use the network namespace and network resources of the node. In this case, the pod can access loopback devices, listen to addresses, and monitor the traffic of other pods on the node."
+      title ="DaemonSet container hostNetwork disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/host_network_access_disabled.md")
       query = file("queries/pod_security/daemonset_host_network_access_disabled.sql")
     }
 
     check "deployment_host_network_access_disabled" {
-      title ="Containers in a Deployment should not run in the host network of the node where the pod is deployed. When running on the host network, the pod can use the network namespace and network resources of the node. In this case, the pod can access loopback devices, listen to addresses, and monitor the traffic of other pods on the node."
+      title ="Deployment container hostNetwork disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/host_network_access_disabled.md")
       query = file("queries/pod_security/deployment_host_network_access_disabled.sql")
     }
 
     check "job_host_network_access_disabled" {
-      title ="Containers in a Job should not run in the host network of the node where the pod is deployed. When running on the host network, the pod can use the network namespace and network resources of the node. In this case, the pod can access loopback devices, listen to addresses, and monitor the traffic of other pods on the node."
+      title ="Job container hostNetwork disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/host_network_access_disabled.md")
       query = file("queries/pod_security/job_host_network_access_disabled.sql")
     }
 
     check "pod_host_network_access_disabled" {
-      title ="Containers in a Pod should not run in the host network of the node where the pod is deployed. When running on the host network, the pod can use the network namespace and network resources of the node. In this case, the pod can access loopback devices, listen to addresses, and monitor the traffic of other pods on the node."
+      title ="Pod container hostNetwork disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/host_network_access_disabled.md")
       query = file("queries/pod_security/pod_host_network_access_disabled.sql")
     }
 
     check "replicaset_host_network_access_disabled" {
-      title ="Containers in a ReplicaSet should not run in the host network of the node where the pod is deployed. When running on the host network, the pod can use the network namespace and network resources of the node. In this case, the pod can access loopback devices, listen to addresses, and monitor the traffic of other pods on the node."
+      title ="ReplicaSet container hostNetwork disabled"
+      docs = file("nsa_cisa_v1/docs/pod_security/host_network_access_disabled.md")
       query = file("queries/pod_security/replicaset_host_network_access_disabled.sql")
     }
   }
