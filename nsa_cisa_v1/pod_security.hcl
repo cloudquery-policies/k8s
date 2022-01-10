@@ -51,7 +51,7 @@ policy "pod_security" {
 
     check "daemonset_container_privilege_escalation_disabled" {
       title ="DaemonSet container privileged escalation disabled"
-      doc = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md"
+      doc = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
       query = file("queries/pod_security/daemonset_container_privilege_escalation_disabled.sql")
     }
 
@@ -69,7 +69,7 @@ policy "pod_security" {
 
     check "pod_container_privilege_escalation_disabled" {
       title ="Pod container privileged escalation disabled"
-      doc = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")n
+      doc = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
       query = file("queries/pod_security/pod_container_privilege_escalation_disabled.sql")
     }
 
