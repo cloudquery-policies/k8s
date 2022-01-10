@@ -1,4 +1,4 @@
-# Kubernetes Network policies
+# Network policies
 
 ## Description
 

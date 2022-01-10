@@ -3,7 +3,7 @@
 ## Description
 
 Containers should have a CPU limit which restricts the container to not use more than a given amount of CPU.
-This policy checks that the containers have a `resoruces -> limits > cpu` set.
+This policy checks that the containers have a `resources -> limits > cpu` set.
 
 This includes Namespaces, DeamonSets, Deployments, Jobs, Pods and ReplicaSets 
 

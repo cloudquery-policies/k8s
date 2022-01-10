@@ -3,7 +3,7 @@
 ## Description
 
 Containers should have a memory request, so Kubernetes will make sure the containers get the memory they requested.
-This policy checks that the containers have a `resoruces -> requests > memory` set.
+This policy checks that the containers have a `resources -> requests > memory` set.
 
 This includes Namespaces, DeamonSets, Deployments, Jobs, Pods and ReplicaSets 
 
