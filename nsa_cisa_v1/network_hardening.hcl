@@ -27,13 +27,13 @@ policy "network_hardening" {
     check "namespace_limit_range_default_cpu_limit" {
       title = "Namespaces CPU limit range default"
       doc = file("nsa_cisa_v1/docs/network_hardening/cpu_limit.md")
-      query = file("queries/network_hardening/namespace_limit_range.sql")
+      query = file("queries/network_hardening/namespace_limit_range_default_cpu_limit.sql")
     }
 
     check "namespace_resource_quota_cpu_limit" {
       title = "Namespaces CPU limit resource quota"
       doc = file("nsa_cisa_v1/docs/network_hardening/cpu_limit.md")
-      query = file("queries/network_hardening/namespace_resource_quota.sql")
+      query = file("queries/network_hardening/namespace_resource_quota_cpu_limit.sql")
     }
 
     check "replicaset_cpu_limit" {
@@ -101,7 +101,7 @@ policy "network_hardening" {
 
     check "daemonset_memory_limit" {
       title = "DeamonSets"
-      doc = file("nsa_cisa_v1/docs/network_hardening/memeory_limit.md")
+      doc = file("nsa_cisa_v1/docs/network_hardening/memory_limit.md")
       query = file("queries/network_hardening/daemonset_memory_limit.sql")
     }
 
@@ -153,7 +153,7 @@ policy "network_hardening" {
     }
 
     check "job_memory_request" {
-      tile = "Jobs"
+      title = "Jobs"
       doc = file("nsa_cisa_v1/docs/network_hardening/memory_request.md")
       query = file("queries/network_hardening/job_memory_request.sql")
     }
@@ -166,7 +166,7 @@ policy "network_hardening" {
 
     check "namespace_resource_quota_memory_request" {
       title = "Namespace memory request resource quota"
-      doc = file("nsa_cisa_v1/docs/namespace_resource_quota_memory_request.md")
+      doc = file("nsa_cisa_v1/docs/network_hardening/namespace_resource_quota.md")
       query = file("queries/network_hardening/namespace_resource_quota_memory_request.sql")
     }
 
