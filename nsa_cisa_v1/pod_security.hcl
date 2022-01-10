@@ -47,35 +47,35 @@ policy "pod_security" {
 
   policy "container_privilege_escalation_disabled" {
     title ="Container privileged escalation disabled"
-      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
 
     check "daemonset_container_privilege_escalation_disabled" {
       title ="DaemonSet container privileged escalation disabled"
-      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
       query = file("queries/pod_security/daemonset_container_privilege_escalation_disabled.sql")
     }
 
     check "deployment_container_privilege_escalation_disabled" {
       title ="Deployment container privileged escalation disabled"
-      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
       query = file("queries/pod_security/deployment_container_privilege_escalation_disabled.sql")
     }
 
     check "job_container_privilege_escalation_disabled" {
       title ="Job container privileged escalation disabled"
-      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
       query = file("queries/pod_security/job_container_privilege_escalation_disabled.sql")
     }
 
     check "pod_container_privilege_escalation_disabled" {
       title ="Pod container privileged escalation disabled"
-      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
       query = file("queries/pod_security/pod_container_privilege_escalation_disabled.sql")
     }
 
     check "replicaset_container_privilege_escalation_disabled" {
       title ="ReplicaSet container privileged escalation disabled"
-      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_access_disabled.md")
+      docs = file("nsa_cisa_v1/docs/pod_security/allow_privileged_escalation_access_disabled.md")
       query = file("queries/pod_security/replicaset_container_privilege_escalation_disabled.sql")
     }
   }
