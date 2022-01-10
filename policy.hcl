@@ -1,6 +1,6 @@
 policy "k8s" {
   title ="Kubernetes Security & Compliance"
-
+  doc = file("README.md")
   configuration {
     provider "k8s" {
       version = ">= 0.3.0"
