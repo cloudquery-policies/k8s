@@ -29,7 +29,7 @@ policy "pod_security" {
     check "job_container_privilege_disabled" {
       title = "Jobs container privileged access disabled"
       doc = file("nsa_cisa_v1/docs/pod_security/privileged_access_disabled.md")
-      query = file("queries/pod_security/job_container_privilege_disabledsql")
+      query = file("queries/pod_security/job_container_privilege_disabled.sql")
     }
 
     check "pod_container_privilege_disabled" {
