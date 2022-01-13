@@ -87,7 +87,7 @@ jobs:
         env:
           CQ_NO_TELEMETRY: 1
           KUBECONFIG: ${{steps.deploy_pg.outputs.kubepath}} # path should be absolute
-          DATABASE_URL: host=${{steps.deploy_pg.outputs.host}} user=postgres password=pass database=postgres port=${{steps.deploy_pg.outputs.port}} sslmode=disable
+          CQ_DSN: postgres://postgres:pass@${{steps.deploy_pg.outputs.host}}:${{steps.deploy_pg.outputs.port}}/postgres?sslmode=disable
 
       - name: Policy Run
         run: |
@@ -95,7 +95,7 @@ jobs:
         env:
           CQ_NO_TELEMETRY: 1
           KUBECONFIG: ${{steps.deploy_pg.outputs.kubepath}} # path should be absolute
-          DATABASE_URL: host=${{steps.deploy_pg.outputs.host}} user=postgres password=pass database=postgres port=${{steps.deploy_pg.outputs.port}} sslmode=disable
+          CQ_DSN: postgres://postgres:pass@${{steps.deploy_pg.outputs.host}}:${{steps.deploy_pg.outputs.port}}/postgres?sslmode=disable
 
       - name: Destroy terraform resources
         env:
