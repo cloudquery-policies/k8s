@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       KUBECONFIG_PATH: ~/.kube/config
+      TF_VAR_SUFFIX: integration
+      TF_VAR_PREFIX: cq-testing
     steps:
       - name: Set up Go 1.x
         uses: actions/setup-go@v2
