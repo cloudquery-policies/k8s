@@ -1,6 +1,6 @@
 policy "nsa_cisa_v1" {
-  title ="NSA and CISA Kubernetes Hardening Guidance v1.0"
-  doc = file("nsa_cisa_v1/README.md")
+  title = "NSA and CISA Kubernetes Hardening Guidance v1.0"
+  doc   = file("nsa_cisa_v1/README.md")
   configuration {
     provider "k8s" {
       version = ">= v0.3.0"
