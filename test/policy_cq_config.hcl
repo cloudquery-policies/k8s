@@ -17,5 +17,5 @@ provider "k8s" {
 }
 
 policy "k8s-policy-pack" {
-  source = "./policy.hcl"
+  source = "./"
 }
