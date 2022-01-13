@@ -43,7 +43,7 @@ jobs:
 
       - name: Deploy postgres
         id: deploy_pg
-        working-directory: ../cq-provider-k8s/resources/integration_tests/infra
+        working-directory: cq-provider-k8s/resources/integration_tests/infra
         run: |
           kubectl apply -f  postgres.yml
           kubectl wait --for=condition=available --timeout=120s deployment/postgresql-db
@@ -56,7 +56,7 @@ jobs:
       - name: Apply terraform resources
         env:
           KUBE_CONFIG_PATH: ${{env.KUBECONFIG_PATH}}
-        working-directory: ../cq-provider-k8s/resources/integration_tests/infra
+        working-directory: cq-provider-k8s/resources/integration_tests/infra
         run: |
           terraform init
           terraform apply -auto-approve -var test_prefix=${{env.TF_VAR_PREFIX}} -var test_suffix=${{env.TF_VAR_SUFFIX}}
