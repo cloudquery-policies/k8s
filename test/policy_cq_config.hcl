@@ -3,7 +3,7 @@ cloudquery {
   plugin_directory = "./cq/providers"
   policy_directory = "./cq/policies"
 
-  provider "azure" {
+  provider "k8s" {
     source  = "cloudquery/cq-provider-k8s"
     version = "latest"
   }
