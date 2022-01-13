@@ -7,10 +7,6 @@ cloudquery {
     source  = "cloudquery/cq-provider-k8s"
     version = "latest"
   }
-
-  connection {
-    dsn = "host=localhost user=postgres password=pass database=postgres port=5432 sslmode=disable"
-  }
 }
 
 // All Provider Configurations
