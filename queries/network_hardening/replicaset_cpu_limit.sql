@@ -3,5 +3,5 @@ SELECT uid,
        namespace,
        context
 FROM k8s_apps_replica_sets,
-     JSONB_ARRAY_ELEMENTS(template -> 'spec' -> 'containers') AS c
+    JSONB_ARRAY_ELEMENTS(template -> 'spec' -> 'containers') AS c
 WHERE c -> 'resources' -> 'limits' ->> 'cpu' IS NULL;
