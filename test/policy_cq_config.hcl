@@ -4,7 +4,7 @@ cloudquery {
   policy_directory = "./cq/policies"
 
   provider "k8s" {
-    source  = "cloudquery/cq-provider-k8s"
+    source  = "cloudquery/k8s"
     version = "latest"
   }
 
