@@ -1,3 +1,7 @@
+------------
+This moved to https://github.com/cloudquery/cq-provider-k8s/tree/main/policies
+------------
+
 # Kubernetes Security & Compliance CloudQuery policy pack
 
 Official Kubernetes security &amp; compliance policy pack for CloudQuery.
